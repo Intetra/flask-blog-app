@@ -1,0 +1,70 @@
+{% extends "common/page_base.html" %}
+{% block content %}
+<h2 class="white" >{%trans%}Home page{%endtrans%}</h2>
+{% if blogposts %}
+<div class="panel-group" id="accordion">
+
+
+{% for b in blogposts %}
+<div class="blogpost row panel panel-default">
+  {% autoescape false %}
+
+
+    <div class="panel-heading">
+      <h3 class="blogpost_title_holder row">
+          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{loop.index}}">
+            Title: {{b.title}}
+          </a>
+      </h3>
+    </div>
+    <div id="collapse{{loop.index}}" class="panel-collapse collapse">
+      <div class="panel-body">
+
+
+
+
+
+
+
+
+          <h3 class="blogpost_paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{b.content}}</h3>
+          <h6>Written by: {{b.user.username}}</h6>
+          <hr /> {% if comments %}
+          <h4>Comments</h4>
+          <div class="comment_box">
+            {% if comment_error %}
+            <p class="error">
+              {% if error_blogpost == b %} {{comment_error}} {% endif %}
+            </p>
+            {% endif %}
+            <h5>{%trans%}Write a comment!{%endtrans%}</h5>
+            <form action="/blog/submit_comment" method="post">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+              <input type="hidden" name="user" value="{{ current_user.id }}" />
+              <input type="hidden" name="blogpost" value="{{ b.id }}" />
+              <textarea id="textarea" class="form-control" rows="3" name="content"></textarea>
+              <input class="btn" type="submit" value="Submit" />
+            </form>
+          </div>
+          <hr /> {% for c in comments %} {% if c.blogpost_id == b.id %}
+          <div class="comment">
+            <h5 class="blogpost_paragraph">{{c.content}}</h5>
+            <h6>Written by: {{c.user.username}}</h6>
+          </div>
+          <hr /> {% endif %} {% endfor %} {% endif %} {% endautoescape %}
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endif %} {% endblock %}

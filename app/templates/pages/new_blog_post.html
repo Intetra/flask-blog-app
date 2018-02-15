@@ -1,0 +1,26 @@
+{% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
+
+{% block content %}
+    <h2>{%trans%}Create a New Blog Post{%endtrans%}</h2>
+    {% if error %}
+    <p class="error">
+      {{error}}
+    </p>
+    {% endif %}
+    <form class="create_blogpost_box" action="/blog/submit_blog_post" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <input type="hidden" name="user" value="{{ current_user.id }}" />
+      <p>
+        Title:
+      </p>
+      <input class="blogpost_title_input" type="text" name="title" value="{{title}}"/>
+      <br />
+      <br />
+      <p>
+        Content:
+      </p>
+      <textarea maxlength="1000" class="form-control" rows="10" name="content">{{content}}</textarea>
+      <input class="btn" type="submit"  value="Submit"/>
+    </form>
+<a href="{{ url_for('main.home_page') }}">Cancel</a>
+{% endblock %}

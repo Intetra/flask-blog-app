@@ -1,0 +1,55 @@
+{% extends "common/page_base.html" %}  {# common/page_base.html extends layout.html #}
+
+{% block content %}
+<h1>User Profile</h1>
+
+<p><a href="{{ url_for('user.change_password') }}">Change password</a></p>
+
+{% from "common/form_macros.html" import render_field, render_submit_field %}
+<form action="" method="POST" class="form" role="form">
+  <div class="row">
+    <div class="col-sm-6 col-md-5 col-lg-4">
+    {{ form.hidden_tag() }}
+
+    {{ render_field(form.first_name, tabindex=240) }}
+
+    {{ render_field(form.last_name, tabindex=250) }}
+
+    {{ render_submit_field(form.submit, tabindex=280) }}
+    </div>
+  </div>
+</form>
+<br />
+<hr />
+<h2>Your posts</h2>
+{% if blogposts %}
+{% for b in blogposts %}
+<div class="blogpost">
+  {% autoescape false %}
+  <h3>Title: {{b.title}}</h3>
+  <h3 class="blogpost_paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{b.content}}</h3>
+  <h6>Written by: {{b.user.username}}</h6>
+  <hr /> {% if comments %}
+  <h4>Comments</h4>
+  <hr /> {% for c in comments %} {% if c.blogpost_id == b.id %}
+  <div class="comment">
+    <h5 class="blogpost_paragraph">{{c.content}}</h5>
+    <h6>Written by: {{c.user.username}}</h6>
+  </div>
+  <hr /> {% endif %} {% endfor %} {% endif %}
+  {% endautoescape %}
+</div>
+{% endfor %} {% endif %}
+<hr />
+{% if u_comments %}
+<h2>Your comments</h2>
+{% for c in u_comments %}
+<div class="blogpost">
+  <div class="comment">
+    <h5 class="blogpost_paragraph">{{c.content}}</h5>
+    <h6>Written by: {{c.user.username}}</h6>
+  </div>
+</div>
+<hr /> {% endfor %} {% endif %}
+
+{% endblock %}

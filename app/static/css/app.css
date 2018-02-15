@@ -1,0 +1,129 @@
+/**** element styles ****/
+
+hr {
+  border-color: #cccccc;
+  margin: 0px;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: rgb(181, 181, 181);
+}
+input[type="text"] {
+  color: black;
+}
+
+/**** header, main and footer divs ****/
+
+.header-title {
+  font-size: 30px;
+  color: white;
+}
+
+/**** class-based style modifiers ****/
+
+.no-margins {
+  margin: 0px;
+}
+
+.with-margins {
+  margin: 10px;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+.white {
+  color: white;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  background-image: url('../images/blog_background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+}
+.btn {
+  background-color: rgb(79, 79, 79);
+}
+
+.blogpost {
+  border: solid 1px black;
+  padding: 20px;
+  background-color: rgb(97, 97, 97);
+}
+.panel-heading {
+  background-color: rgb(119, 119, 119) !important;
+}
+
+.blogpost_title_holder {
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.accordion-toggle {
+    text-decoration: none !important;
+}
+.accordion-toggle {
+  position: relative;
+}
+.accordion-toggle::before,
+.accordion-toggle::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 14px;
+  height: 4px;
+  margin-top: -2px;
+  background-color: #000;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.accordion-toggle::before {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  opacity: 0;
+}
+.accordion-toggle.collapsed::before {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.accordion-toggle.collapsed::after {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.blogpost_title_input {
+  width: 80%;
+}
+
+.create_blogpost_box {
+  width: 80%;
+}
+
+.blogpost_paragraph {
+  word-wrap: break-word;
+}
+
+.comment_box {
+  border: solid 4px black;
+  border-radius: 20px;
+  background-color: rgb(140, 140, 140);
+  margin: 10px;
+  padding: 10px;
+}
+
+.error {
+  color: red;
+}
